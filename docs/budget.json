@@ -1,0 +1,26 @@
+{
+ "I_acq_mA": 2.56,
+ "I_radio_moy_mA": 0.47,
+ "I_rail_mA": 3.04,
+ "I_bat_mA": 2.738738738738739,
+ "I_sleep_mA": 0.02,
+ "autonomie_h_150mAh_nominal": 41.89884868421052,
+ "autonomie_h_150mAh_pire_cas": 27.93256578947368,
+ "autonomie_h_200mAh_nominal": 55.86513157894736,
+ "autonomie_h_200mAh_pire_cas": 37.243421052631575,
+ "autonomie_h_250mAh_nominal": 69.8314144736842,
+ "autonomie_h_250mAh_pire_cas": 46.554276315789465,
+ "jours_4h_par_jour_200mAh": 13.474293874960328,
+ "conso_jour_mAh": 11.354954954954957,
+ "jours_200mAh": 13.474293874960328,
+ "patch": {
+  "W_mm": 57.092131116753905,
+  "L_mm": 50.64747916562623,
+  "eps_eff_sec": 1.2674688994831893,
+  "f_sec_GHz": 2.45,
+  "f_humide_er1.5_GHz": 2.302397196444826,
+  "f_humide_er1.8_GHz": 2.1231904053851887,
+  "f_humide_er2.2_GHz": 1.9381628651522276
+ },
+ "SAR_borne_Wkg": 0.1
+}

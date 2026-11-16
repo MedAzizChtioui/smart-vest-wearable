@@ -1,0 +1,33 @@
+"""Genere docs/figures/schema_bloc.png (schema bloc fonctionnel du pod)."""
+import matplotlib; matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch
+fig, ax = plt.subplots(figsize=(10, 5.6)); ax.set_xlim(0, 100); ax.set_ylim(0, 56); ax.axis("off")
+def box(x, y, w, h, t, c="#e8eef7", fs=7.5):
+    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.3", fc=c, ec="#33415c", lw=1)); ax.text(x+w/2, y+h/2, t, ha="center", va="center", fontsize=fs)
+def arr(x1, y1, x2, y2, t="", c="#33415c", ls="-", dx=0, dy=1, f=0.5):
+    ax.annotate("", (x2, y2), (x1, y1), arrowprops=dict(arrowstyle="->", color=c, lw=1.1, ls=ls))
+    if t: ax.text(x1+(x2-x1)*f+dx, y1+(y2-y1)*f+dy, t, fontsize=6, ha="center", color=c, bbox=dict(fc="white", ec="none", pad=0.5))
+box(2, 40, 20, 10, "Électrodes textiles\nsèches (2 dérivations)\n+ ceinture élongation", "#dff3e3")
+box(2, 26, 20, 9, "IMU ICM-42688-P\n(6 axes, ±16 g)", "#dff3e3")
+box(2, 14, 20, 9, "Accéléro haut-g\nADXL375 (±200 g)", "#dff3e3")
+box(2, 3, 20, 8, "Temp. peau\nMAX30208", "#dff3e3")
+box(30, 40, 18, 10, "AFE ADS1292R\nECG diff. + resp.\nCMRR>105 dB, 24 b")
+box(56, 20, 22, 24, "SoC nRF5340\napp core M33 128 MHz\n(prétraitement, NLMS,\nAE INT8, alerte)\n\nnet core : BLE Mesh\n/ radio 2,45 GHz", "#fde9d0")
+box(84, 36, 15, 9, "Patch textile\n2,45 GHz\n(feutre, Shieldex)", "#f6dbe4")
+box(84, 22, 15, 9, "Vibreur haptique\n+ LED d'alerte", "#f6dbe4")
+box(30, 3, 22, 9, "PMIC nPM1300\nBuck 3,0 V + chargeur\nLiPo 200 mAh", "#fff4c2")
+box(66, 3, 24, 9, "Connecteur magnétique\n(pod amovible, IP67)", "#fff4c2")
+arr(22, 45, 30, 45, "différentiel")
+arr(48, 44, 56, 40, "SPI+DRDY", dy=2.2)
+arr(22, 30, 56, 32, "SPI 8 MHz", f=0.35)
+arr(22, 18, 56, 26, "SPI + INT", f=0.7, dy=-2.8)
+arr(22, 9, 56, 22, "I²C 400 kHz", f=0.62, dy=-2.8)
+arr(78, 38, 84, 40, "RF 50 Ω", dy=2)
+arr(78, 28, 84, 26, "GPIO/PWM", dy=2)
+arr(50, 12, 60, 20, "3,0 V", "#b8860b", dx=-4)
+arr(41, 12, 41, 40, "", "#b8860b", "--")
+ax.text(41, 37, "3,0 V analogique\n(LDO filtré)", fontsize=6, color="#b8860b", ha="center", bbox=dict(fc="white", ec="none", pad=0.5))
+arr(66, 7.5, 52.5, 7.5, "VBAT / charge", "#b8860b", dy=1.2)
+ax.text(50, 54, "Pod électronique amovible (masse < 40 g) — Profil B : sport collectif", ha="center", fontsize=8, weight="bold")
+plt.tight_layout(); plt.savefig("../docs/figures/schema_bloc.png", dpi=170)
